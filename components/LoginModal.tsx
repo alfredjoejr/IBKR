@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { X, Lock, ArrowRight } from 'lucide-react';
+import { X, Lock, ArrowRight, AlertCircle } from 'lucide-react';
 import { GlassCard } from './GlassCard';
 
 interface LoginModalProps {
@@ -10,6 +10,11 @@ interface LoginModalProps {
 export const LoginModal: React.FC<LoginModalProps> = ({ onClose, onLogin }) => {
   const [mounted, setMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  
+  // State to track inputs
+  const [username, setUsername] = useState('alfredjoe07089');
+  const [password, setPassword] = useState(''); // Starts empty now
+  const [error, setError] = useState('');
 
   useEffect(() => {
     setMounted(true);
@@ -21,11 +26,20 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onClose, onLogin }) => {
 
   const handleCredentialsSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
     setIsLoading(true);
-    // Simulate network delay for checking credentials
+
+    // Validate credentials
     setTimeout(() => {
         setIsLoading(false);
-        onLogin();
+        
+        // STRICT PASSWORD CHECK
+        // Username must be 'alfredjoe07089' AND password must match exactly
+        if (username === 'alfredjoe07089' && password === 'DJGeQfQ6&RUrFHFnn*gKGa&7#f%gDPc21zDT!3') {
+            onLogin();
+        } else {
+            setError('Invalid username or password');
+        }
     }, 1000);
   };
 
@@ -58,15 +72,25 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onClose, onLogin }) => {
                 {/* Content Area */}
                 <div className="p-8 pt-6 overflow-y-auto">
                     <form className="space-y-6 animate-in fade-in slide-in-from-left-4 duration-300" onSubmit={handleCredentialsSubmit}>
+                        
+                        {/* Error Display */}
+                        {error && (
+                            <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center gap-3 text-red-400 text-sm">
+                                <AlertCircle size={16} />
+                                <span>{error}</span>
+                            </div>
+                        )}
+
                         <div className="space-y-5">
                             <div className="space-y-2">
                                 <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest ml-1">Username</label>
                                 <input 
                                     type="text" 
                                     required
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
                                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/20 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all font-medium"
                                     placeholder="Enter your username"
-                                    defaultValue="alfredjoe07089"
                                 />
                             </div>
                             
@@ -75,9 +99,10 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onClose, onLogin }) => {
                                 <input 
                                     type="password"
                                     required
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
                                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/20 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all font-medium"
                                     placeholder="••••••••"
-                                    defaultValue="password"
                                 />
                             </div>
                         </div>
