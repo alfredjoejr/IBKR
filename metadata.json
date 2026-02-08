@@ -1,0 +1,5 @@
+{
+  "name": "IBKR System View",
+  "description": "A high-performance trading interface view for IBKR International US Stocks and Derivatives.",
+  "requestFramePermissions": []
+}
