@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { GlassCard } from './GlassCard';
+
 import { 
   LogOut, PieChart, TrendingUp, TrendingDown, Activity, Search, 
   Bell, Settings, DollarSign, ChevronDown, Plus, Minus, Lock, X, Wallet,
@@ -252,12 +253,12 @@ export const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
                     </div>
                     <div className="flex-1 overflow-y-auto custom-scrollbar">
                         <div className="divide-y divide-white/5">
-                             <WatchlistRow symbol="AMD" name="Adv Micro Devices" change={2.4} price={180.20} />
-                             <WatchlistRow symbol="MSFT" name="Microsoft Corp" change={0.8} price={420.55} />
-                             <WatchlistRow symbol="COIN" name="Coinbase Global" change={-4.2} price={245.10} />
-                             <WatchlistRow symbol="META" name="Meta Platforms" change={1.1} price={495.30} />
-                             <WatchlistRow symbol="GOOGL" name="Alphabet Inc" change={-0.3} price={148.90} />
-                             <WatchlistRow symbol="AMZN" name="Amazon.com" change={0.5} price={178.15} />
+                            <WatchlistRow symbol="AMD" name="Adv Micro Devices" change={0.24} price={422.00} />
+                            <WatchlistRow symbol="MSFT" name="Microsoft Corp" change={-1.82} price={415.85} />
+                            <WatchlistRow symbol="COIN" name="Coinbase Global" change={3.57} price={196.20} />
+                            <WatchlistRow symbol="META" name="Meta Platforms" change={-1.21} price={603.79} />
+                            <WatchlistRow symbol="GOOGL" name="Alphabet Inc" change={-2.10} price={388.60} />
+                            <WatchlistRow symbol="AMZN" name="Amazon.com" change={-1.90} price={259.84} />
                         </div>
                     </div>
                 </GlassCard>
